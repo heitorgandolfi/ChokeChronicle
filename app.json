@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "personal-track-bjj",
+    "name": "Bjj Journey",
     "slug": "personal-track-bjj",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e9e438f8-7709-45d2-83ad-eab28d93b5db"
+      }
+    },
+    "owner": "heitorgandolfi"
   }
 }
