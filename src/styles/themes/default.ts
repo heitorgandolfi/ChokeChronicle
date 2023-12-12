@@ -2,6 +2,8 @@ export const defaultTheme = {
   "primary-lighter": "#B3B9DF",
   "primary-light": "#888EBC",
   primary: "#393F70",
+  primaryA: "#333865",
+  primaryB: "#3F4678",
   "primary-dark": "#262A50",
   "primary-darker": "#1F2240",
 
