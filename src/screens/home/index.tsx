@@ -46,6 +46,17 @@ const mockData = [
     subs: 5,
     taps: 0,
   },
+  {
+    id: "5",
+    date: "05/12/23",
+    city: "Ribeirão Preto",
+    mood: "satisfied",
+    fights: { white: 1, blue: 2, purple: 4, brown: 0, black: 4 },
+    rolls: 5,
+    rests: 12,
+    subs: 5,
+    taps: 0,
+  },
 ];
 
 export const HomeScreen = () => {

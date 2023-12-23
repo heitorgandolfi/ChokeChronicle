@@ -13,7 +13,7 @@ export const AppRoutes = () => {
 
   return (
     <Navigator
-      initialRouteName="Home"
+      initialRouteName="NewWorkout"
       backBehavior="history"
       screenOptions={{
         headerShown: true,
@@ -34,7 +34,7 @@ export const AppRoutes = () => {
       />
 
       <Screen
-        name="AddWorkout"
+        name="NewWorkout"
         options={{
           headerTitle: "New Workout",
           tabBarIcon: ({ focused }) => <BottomTabs focused={focused} icons="plus" />,
