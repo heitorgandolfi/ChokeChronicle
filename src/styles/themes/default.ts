@@ -8,7 +8,11 @@ export const defaultTheme = {
   "primary-darker": "#1F2240",
 
   secondary: "#77DD5D",
+  tertiary: "#6A59FF",
 
+  error: "#FB5353",
+
+  "gray-450": "#E3E6FF",
   "gray-400": "#D7D5D5",
   "gray-350": "#E6E8F6",
   "gray-300": "#E6E5E5",
