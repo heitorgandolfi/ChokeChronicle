@@ -1,17 +1,17 @@
 import { View, Image } from "react-native";
 
-import { TrainingCardProps } from "../../models/trainingCardModel";
-import { beltImages, trainingPerception } from "../../data/renderImages";
+import { TrainningCardProps } from "../../models/trainningCardModel";
+import { beltImages, trainningPerception } from "../../data/renderImages";
 
 import {
-  TrainingCardContainer,
-  TrainingLocaleAndMoodContainer,
+  TrainningCardContainer,
+  TrainningLocaleAndMoodContainer,
   DateInfoText,
   CityInfoText,
   GeneralInfosText,
   BeltsListContainer,
-  TrainingFoughtBeltsContainer,
-  TrainingStatisticsContainer,
+  TrainningFoughtBeltsContainer,
+  TrainningStatisticsContainer,
 } from "./styles";
 
 const renderBeltImages = (belt: any) => {
@@ -25,7 +25,7 @@ const renderBeltImages = (belt: any) => {
   return images;
 };
 
-export const TrainingCard = ({
+export const TrainningCard = ({
   date,
   city,
   mood,
@@ -34,29 +34,29 @@ export const TrainingCard = ({
   subs,
   taps,
   belts,
-}: TrainingCardProps) => {
+}: TrainningCardProps) => {
   return (
-    <TrainingCardContainer>
-      <TrainingLocaleAndMoodContainer>
+    <TrainningCardContainer>
+      <TrainningLocaleAndMoodContainer>
         <View>
           <DateInfoText>{date}</DateInfoText>
           <CityInfoText>{city}</CityInfoText>
         </View>
 
-        <Image source={trainingPerception[mood]} />
-      </TrainingLocaleAndMoodContainer>
+        <Image source={trainningPerception[mood]} />
+      </TrainningLocaleAndMoodContainer>
 
-      <TrainingFoughtBeltsContainer>
+      <TrainningFoughtBeltsContainer>
         <GeneralInfosText>Fought belts</GeneralInfosText>
         <BeltsListContainer>{renderBeltImages(belts)}</BeltsListContainer>
-      </TrainingFoughtBeltsContainer>
+      </TrainningFoughtBeltsContainer>
 
-      <TrainingStatisticsContainer>
+      <TrainningStatisticsContainer>
         <GeneralInfosText>{`${rolls} Rolls`}</GeneralInfosText>
         <GeneralInfosText>{`${rests} Rests`}</GeneralInfosText>
         <GeneralInfosText>{`${subs} Subs`}</GeneralInfosText>
         <GeneralInfosText>{`${taps} Taps`}</GeneralInfosText>
-      </TrainingStatisticsContainer>
-    </TrainingCardContainer>
+      </TrainningStatisticsContainer>
+    </TrainningCardContainer>
   );
 };

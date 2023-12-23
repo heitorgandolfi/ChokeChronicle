@@ -1,4 +1,4 @@
-export const trainingPerception: any = {
+export const trainningPerception: any = {
   dissatisfied: require("../../assets/emojis/dissatisfied.png"),
   neutral: require("../../assets/emojis/neutral.png"),
   satisfied: require("../../assets/emojis/satisfied.png"),

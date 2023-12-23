@@ -33,7 +33,7 @@ export const LocationDateContainerFormFields = ({
           setDatePickerVisibility(false);
           if (selectedDate) {
             const formattedDate = selectedDate.toLocaleDateString("pt-BR");
-            setValue("trainingDate", formattedDate);
+            setValue("trainningDate", formattedDate);
           }
         }}
       />
@@ -47,7 +47,7 @@ export const LocationDateContainerFormFields = ({
       {isDatePickerVisible && renderDateTimePicker()}
 
       <Controller
-        name="trainingDate"
+        name="trainningDate"
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
@@ -57,17 +57,17 @@ export const LocationDateContainerFormFields = ({
             onFocus={() => setDatePickerVisibility(true)}
             onBlur={onBlur}
             onChangeText={onChange}
-            hasError={Boolean(errors.trainingDate)}
+            hasError={Boolean(errors.trainningDate)}
             showSoftInputOnFocus={false}
           />
         )}
       />
 
-      {errors.trainingDate && <ErrorText>This is required.</ErrorText>}
+      {errors.trainningDate && <ErrorText>This is required.</ErrorText>}
 
       <FormText>Location:</FormText>
       <Controller
-        name="trainingLocation"
+        name="trainningLocation"
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
           <Input
@@ -76,11 +76,11 @@ export const LocationDateContainerFormFields = ({
             placeholderTextColor={theme["primary-light"]}
             onBlur={onBlur}
             onChangeText={onChange}
-            hasError={Boolean(errors.trainingLocation)}
+            hasError={Boolean(errors.trainningLocation)}
           />
         )}
       />
-      {errors.trainingLocation && <ErrorText>This is required.</ErrorText>}
+      {errors.trainningLocation && <ErrorText>This is required.</ErrorText>}
     </LocationDateContainer>
   );
 };

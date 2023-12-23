@@ -1,4 +1,4 @@
-export interface TrainingCardProps {
+export interface TrainningCardProps {
   date: string;
   city: string;
   mood: string;

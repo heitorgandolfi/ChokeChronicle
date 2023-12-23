@@ -1,5 +1,5 @@
 import { FlatList } from "react-native";
-import { TrainingCard } from "../../components/trainingCard";
+import { TrainningCard } from "../../components/trainningCard";
 
 const mockData = [
   {
@@ -65,7 +65,7 @@ export const HomeScreen = () => {
       data={mockData}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <TrainingCard
+        <TrainningCard
           belts={item.fights}
           date={item.date}
           city={item.city}

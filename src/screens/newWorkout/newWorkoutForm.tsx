@@ -11,8 +11,8 @@ import { InteractionsContainerFormFields } from "./formComponents/interactions";
 import { LocationDateContainerFormFields } from "./formComponents/locationDate";
 
 const schema = Yup.object().shape({
-  trainingDate: Yup.string().required("Date is required"),
-  trainingLocation: Yup.string().required("Location is required"),
+  trainningDate: Yup.string().required("Date is required"),
+  trainningLocation: Yup.string().required("Location is required"),
   whiteBelt: Yup.string(),
   blueBelt: Yup.string(),
   purpleBelt: Yup.string(),
@@ -43,7 +43,7 @@ export const NewWorkoutForm = () => {
   const selectedImage = watch("mood");
 
   const userHandleSubmit = (formData: any) => {
-    const { trainingDate, trainingLocation } = formData;
+    const { trainningDate, trainningLocation } = formData;
     console.log(`form: ${JSON.stringify(formData)}`);
 
     reset();

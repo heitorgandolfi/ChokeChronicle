@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const TrainingCardContainer = styled.View`
+export const TrainningCardContainer = styled.View`
   gap: 14px;
   margin: 20px 16px 5px;
   padding: 16px;
@@ -12,13 +12,13 @@ export const TrainingCardContainer = styled.View`
   background-color: ${(props) => props.theme.primaryB};
 `;
 
-export const TrainingLocaleAndMoodContainer = styled.View`
+export const TrainningLocaleAndMoodContainer = styled.View`
   flex-direction: row;
   align-items: normal;
   justify-content: space-between;
 `;
 
-export const TrainingFoughtBeltsContainer = styled.View`
+export const TrainningFoughtBeltsContainer = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 8px;
@@ -37,7 +37,7 @@ export const BeltsListContainer = styled.View`
   background-color: ${(props) => props.theme.primaryA};
 `;
 
-export const TrainingStatisticsContainer = styled.View`
+export const TrainningStatisticsContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
