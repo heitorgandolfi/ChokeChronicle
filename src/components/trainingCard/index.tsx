@@ -16,9 +16,10 @@ import {
 
 const renderBeltImages = (belt: any) => {
   let images = [];
+  let keyCounter = 0;
   for (let color in belt) {
     for (let i = 0; i < belt[color]; i++) {
-      images.push(<Image source={beltImages[color]} />);
+      images.push(<Image key={keyCounter++} source={beltImages[color]} />);
     }
   }
   return images;

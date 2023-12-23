@@ -43,19 +43,19 @@ export const TrainingStatisticsContainer = styled.View`
   align-items: center;
 `;
 
-export const DateInfoText = styled.Text`
+export const DateInfoText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
   font-size: 20px;
   font-weight: 600;
   color: ${(props) => props.theme["gray-350"]};
 `;
 
-export const CityInfoText = styled.Text`
+export const CityInfoText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
   font-size: 16px;
   font-weight: 400;
   color: ${(props) => props.theme["primary-light"]};
 `;
 
-export const GeneralInfosText = styled.Text`
+export const GeneralInfosText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
   font-size: 16px;
   font-weight: 400;
   color: ${(props) => props.theme["gray-350"]};
