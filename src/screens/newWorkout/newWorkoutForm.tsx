@@ -9,6 +9,7 @@ import { FormContainer, SubmitButton, SubmitButtonText } from "./styles";
 import { BeltsContainerFormFields } from "./formComponents/belts";
 import { InteractionsContainerFormFields } from "./formComponents/interactions";
 import { LocationDateContainerFormFields } from "./formComponents/locationDate";
+import AddTrainningUseCase from "../../useCases/trainningUseCase";
 
 const schema = Yup.object().shape({
   trainningDate: Yup.string().required("Date is required"),
@@ -42,11 +43,10 @@ export const NewWorkoutForm = () => {
 
   const selectedImage = watch("mood");
 
-  const userHandleSubmit = (formData: any) => {
-    const { trainningDate, trainningLocation } = formData;
-    console.log(`form: ${JSON.stringify(formData)}`);
-
+  const userHandleSubmit = async (formData: any) => {
     reset();
+
+    await AddTrainningUseCase.execute(formData);
 
     navigation.navigate("Home");
   };

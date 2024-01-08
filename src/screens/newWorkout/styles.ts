@@ -70,7 +70,6 @@ export const SubmitButton = styled.TouchableOpacity`
   border-radius: 16px;
 
   background-color: ${(props) => props.theme.tertiary};
-  color: white;
 `;
 
 export const SubmitButtonText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
