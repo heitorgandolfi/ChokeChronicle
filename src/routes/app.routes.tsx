@@ -13,7 +13,7 @@ export const AppRoutes = () => {
 
   return (
     <Navigator
-      initialRouteName="NewWorkout"
+      initialRouteName="Home"
       backBehavior="history"
       screenOptions={{
         headerShown: true,
