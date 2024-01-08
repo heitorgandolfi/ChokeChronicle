@@ -1,7 +1,7 @@
 import { View, Image } from "react-native";
 
-import { TrainningCardProps } from "../../models/trainningCardModel";
-import { beltImages, trainningPerception } from "../../data/renderImages";
+import { BeltsProps, TrainningCardProps } from "../../models/trainningCardModel";
+import { beltImages, trainningPerception } from "../../shared/renderImages";
 
 import {
   TrainningCardContainer,
@@ -13,13 +13,16 @@ import {
   TrainningFoughtBeltsContainer,
   TrainningStatisticsContainer,
 } from "./styles";
+import { ScrollView } from "react-native";
 
-const renderBeltImages = (belt: any) => {
-  let images = [];
+const renderBeltImages = (belts: BeltsProps) => {
+  let images: JSX.Element[] = [];
   let keyCounter = 0;
-  for (let color in belt) {
-    for (let i = 0; i < belt[color]; i++) {
-      images.push(<Image key={keyCounter++} source={beltImages[color]} />);
+
+  for (const belt in belts) {
+    const count = parseInt(belts[belt as keyof BeltsProps]);
+    for (let i = 0; i < count; i++) {
+      images.push(<Image key={keyCounter++} source={beltImages[belt]} />);
     }
   }
   return images;
@@ -29,18 +32,22 @@ export const TrainningCard = ({
   date,
   city,
   mood,
+  whiteBelt,
+  blueBelt,
+  purpleBelt,
+  brownBelt,
+  blackBelt,
   rolls,
   rests,
   subs,
   taps,
-  belts,
 }: TrainningCardProps) => {
   return (
     <TrainningCardContainer>
       <TrainningLocaleAndMoodContainer>
-        <View>
+        <View style={{ flex: 1 }}>
           <DateInfoText>{date}</DateInfoText>
-          <CityInfoText>{city}</CityInfoText>
+          <CityInfoText numberOfLines={1}>{city}</CityInfoText>
         </View>
 
         <Image source={trainningPerception[mood]} />
@@ -48,7 +55,11 @@ export const TrainningCard = ({
 
       <TrainningFoughtBeltsContainer>
         <GeneralInfosText>Fought belts</GeneralInfosText>
-        <BeltsListContainer>{renderBeltImages(belts)}</BeltsListContainer>
+        <ScrollView horizontal>
+          <BeltsListContainer>
+            {renderBeltImages({ whiteBelt, blueBelt, purpleBelt, brownBelt, blackBelt })}
+          </BeltsListContainer>
+        </ScrollView>
       </TrainningFoughtBeltsContainer>
 
       <TrainningStatisticsContainer>
