@@ -45,11 +45,12 @@ export const NewWorkoutForm = () => {
 
   const userHandleSubmit = async (formData: any) => {
     reset();
-
+    
     await AddTrainningUseCase.execute(formData);
 
     navigation.navigate("Home");
   };
+  
 
   return (
     <FormContainer>
