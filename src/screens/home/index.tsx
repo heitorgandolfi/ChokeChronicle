@@ -14,10 +14,11 @@ export const HomeScreen = () => {
   const isFocused = useIsFocused();
 
   const handleHomeScreenLoading = () => {
-    if (isLoading) {
-      return <ListOfTrainningCardSkeleton />;
-    }
-    return trainnings.length == 0 ? <EmptyCardList /> : <TrainningCardList />;
+    if (trainnings.length == 0) return <EmptyCardList />;
+
+    if (isLoading) return <ListOfTrainningCardSkeleton />;
+
+    return <TrainningCardList />;
   };
 
   useFocusEffect(
