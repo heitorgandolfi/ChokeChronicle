@@ -1,34 +1,36 @@
-import { View, Image } from "react-native";
+import { View, Dimensions } from "react-native";
 
-import { BeltsProps, TrainningCardProps } from "../../models/trainningCardModel";
-import { beltImages, trainningPerception } from "../../shared/renderImages";
+import Animated, {
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  runOnJS,
+} from "react-native-reanimated";
 
-import {
-  TrainningCardContainer,
-  TrainningLocaleAndMoodContainer,
-  DateInfoText,
-  CityInfoText,
-  GeneralInfosText,
-  BeltsListContainer,
-  TrainningFoughtBeltsContainer,
-  TrainningStatisticsContainer,
-} from "./styles";
-import { ScrollView } from "react-native";
+import { PanGestureHandler, PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
 
-const renderBeltImages = (belts: BeltsProps) => {
-  let images: JSX.Element[] = [];
-  let keyCounter = 0;
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-  for (const belt in belts) {
-    const count = parseInt(belts[belt as keyof BeltsProps]);
-    for (let i = 0; i < count; i++) {
-      images.push(<Image key={keyCounter++} source={beltImages[belt]} />);
-    }
-  }
-  return images;
-};
+import { TrainningCardProps } from "../../models/trainningCardModel";
+
+import { TrainningMood } from "./trainningMood";
+import { TranningBelts } from "./trainningBelts";
+import { TrainningStatistics } from "./trainningStatistics";
+import { TrainningCardContainer, DeleteCardIconContainer } from "./styles";
+import { useTheme } from "styled-components";
+
+const { width: SCREEN_WIDTH } = Dimensions.get("window");
+const TRANSLATE_X_TRASHHOLDER = -SCREEN_WIDTH * 0.2;
+
+interface TrainningCardPropsWithId extends TrainningCardProps {
+  id: number;
+  onDeleted: (id: number) => void;
+}
 
 export const TrainningCard = ({
+  id,
+  onDeleted,
   date,
   city,
   mood,
@@ -41,33 +43,61 @@ export const TrainningCard = ({
   rests,
   subs,
   taps,
-}: TrainningCardProps) => {
+}: TrainningCardPropsWithId) => {
+  const { error } = useTheme();
+  const translateX = useSharedValue(0);
+
+  const panGesture = useAnimatedGestureHandler<PanGestureHandlerGestureEvent>({
+    onActive: (event) => {
+      translateX.value = event.translationX;
+    },
+    onEnd: () => {
+      const trainningCardShouldBeDeleted = translateX.value < TRANSLATE_X_TRASHHOLDER;
+      if (trainningCardShouldBeDeleted) {
+        translateX.value = withTiming(-SCREEN_WIDTH);
+        runOnJS(onDeleted)(id);
+      } else {
+        translateX.value = withTiming(0);
+      }
+    },
+  });
+
+  const trainningCardStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateX: translateX.value,
+      },
+    ],
+  }));
+
+  const rDeleteIconContainerStyle = useAnimatedStyle(() => {
+    const opacity = withTiming(translateX.value < TRANSLATE_X_TRASHHOLDER ? 1 : 0);
+    return { opacity };
+  });
+
   return (
-    <TrainningCardContainer>
-      <TrainningLocaleAndMoodContainer>
-        <View style={{ flex: 1 }}>
-          <DateInfoText>{date}</DateInfoText>
-          <CityInfoText numberOfLines={1}>{city}</CityInfoText>
-        </View>
+    <View>
+      <DeleteCardIconContainer>
+        <Animated.View style={rDeleteIconContainerStyle}>
+          <MaterialCommunityIcons name="trash-can-outline" size={40} color={error} />
+        </Animated.View>
+      </DeleteCardIconContainer>
 
-        <Image source={trainningPerception[mood]} />
-      </TrainningLocaleAndMoodContainer>
+      <PanGestureHandler onGestureEvent={panGesture}>
+        <TrainningCardContainer style={trainningCardStyle}>
+          <TrainningMood date={date} city={city} mood={mood} />
 
-      <TrainningFoughtBeltsContainer>
-        <GeneralInfosText>Fought belts</GeneralInfosText>
-        <ScrollView horizontal>
-          <BeltsListContainer>
-            {renderBeltImages({ whiteBelt, blueBelt, purpleBelt, brownBelt, blackBelt })}
-          </BeltsListContainer>
-        </ScrollView>
-      </TrainningFoughtBeltsContainer>
+          <TranningBelts
+            whiteBelt={whiteBelt}
+            blueBelt={blueBelt}
+            purpleBelt={purpleBelt}
+            brownBelt={brownBelt}
+            blackBelt={blackBelt}
+          />
 
-      <TrainningStatisticsContainer>
-        <GeneralInfosText>{`${rolls} Rolls`}</GeneralInfosText>
-        <GeneralInfosText>{`${rests} Rests`}</GeneralInfosText>
-        <GeneralInfosText>{`${subs} Subs`}</GeneralInfosText>
-        <GeneralInfosText>{`${taps} Taps`}</GeneralInfosText>
-      </TrainningStatisticsContainer>
-    </TrainningCardContainer>
+          <TrainningStatistics rolls={rolls} rests={rests} subs={subs} taps={taps} />
+        </TrainningCardContainer>
+      </PanGestureHandler>
+    </View>
   );
 };
