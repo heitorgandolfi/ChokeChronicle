@@ -52,9 +52,28 @@ const getAllTrainningsFromDatabase = (): Promise<NewWorkoutFormFieldsProps[]> =>
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "SELECT * FROM Trainning ORDER BY Id DESC",
+        "SELECT *, substr(trainningDate, 7, 4) || substr(trainningDate, 4, 2) || substr(trainningDate, 1, 2) AS formattedDate FROM Trainning ORDER BY formattedDate DESC",
         [],
         (_, { rows }) => resolve(rows._array),
+        (_, error) => {
+          reject("Ops... Something went wrong! Try again later.");
+          return false;
+        },
+      );
+    });
+  });
+};
+
+
+const deleteTrainningFromDatabase = (id: number) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "DELETE FROM Trainning WHERE Id = ?",
+        [id],
+        (_, result) => {
+          resolve(result.rowsAffected);
+        },
         (_, error) => {
           reject("Ops... Something went wrong! Try again later.");
           return false;
@@ -85,5 +104,6 @@ const dropTrainningTable = () => {
 export const TrainningRepository = {
   addTrainningToDatabase,
   getAllTrainningsFromDatabase,
+  deleteTrainningFromDatabase,
   dropTrainningTable,
 };
