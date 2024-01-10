@@ -20,4 +20,11 @@ export const defaultTheme = {
   "gray-150": "#F3F2F2",
   "gray-100": "#FAFAFA",
   white: "#FFFFFF",
+
+  fonts: {
+    Light: "Roboto_300Light",
+    Regular: "Roboto_400Regular",
+    Medium: "Roboto_500Medium",
+    Bold: "Roboto_700Bold",
+  },
 };
