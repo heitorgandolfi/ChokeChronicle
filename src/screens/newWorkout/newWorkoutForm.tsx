@@ -4,16 +4,17 @@ import { useTheme } from "styled-components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
 
-import { MoodContainerFormFields } from "./formComponents/mood";
-import { FormContainer, SubmitButton, SubmitButtonText } from "./styles";
-import { BeltsContainerFormFields } from "./formComponents/belts";
-import { InteractionsContainerFormFields } from "./formComponents/interactions";
-import { LocationDateContainerFormFields } from "./formComponents/locationDate";
 import AddTrainningUseCase from "../../useCases/trainningUseCase";
 
+import { MoodContainerFormFields } from "./formComponents/mood";
+import { BeltsContainerFormFields } from "./formComponents/belts";
+import { FormContainer, SubmitButton, SubmitButtonText } from "./styles";
+import { InteractionsContainerFormFields } from "./formComponents/interactions";
+import { LocationDateContainerFormFields } from "./formComponents/locationDate";
+
 const schema = Yup.object().shape({
-  trainningDate: Yup.string().required("Date is required"),
-  trainningLocation: Yup.string().required("Location is required"),
+  trainningDate: Yup.string().required("This field is required"),
+  trainningLocation: Yup.string().required("This field is required"),
   whiteBelt: Yup.string(),
   blueBelt: Yup.string(),
   purpleBelt: Yup.string(),
@@ -23,7 +24,7 @@ const schema = Yup.object().shape({
   rests: Yup.string(),
   subs: Yup.string(),
   taps: Yup.string(),
-  mood: Yup.string().required("At least one must be selected"),
+  mood: Yup.string().required("This field is required"),
 });
 
 export const NewWorkoutForm = () => {
@@ -45,12 +46,11 @@ export const NewWorkoutForm = () => {
 
   const userHandleSubmit = async (formData: any) => {
     reset();
-    
+
     await AddTrainningUseCase.execute(formData);
 
     navigation.navigate("Home");
   };
-  
 
   return (
     <FormContainer>

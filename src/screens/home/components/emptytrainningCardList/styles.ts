@@ -10,7 +10,7 @@ export const EmptyCardListContainer = styled.View`
 
 export const EmptyCardListText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
   font-size: 18px;
-  font-weight: bold;
+  font-family: ${(props) => props.theme.fonts.Bold};
   text-align: center;
 
   color: ${(props) => props.theme["primary-lighter"]};

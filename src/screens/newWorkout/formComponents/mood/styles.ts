@@ -29,7 +29,7 @@ export const Button = styled.TouchableOpacity<MoodImageOnButtonProps>`
 export const ErrorText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
   margin-top: 4px;
 
-  font-weight: bold;
+  font-family: ${(props) => props.theme.fonts.Bold};
 
   color: ${(props) => props.theme.error};
 `;

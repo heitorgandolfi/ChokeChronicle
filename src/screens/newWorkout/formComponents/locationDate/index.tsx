@@ -63,7 +63,7 @@ export const LocationDateContainerFormFields = ({
         )}
       />
 
-      {errors.trainningDate && <ErrorText>This is required.</ErrorText>}
+      {errors.trainningDate && <ErrorText>{errors.trainningDate.message}</ErrorText>}
 
       <FormText>Location:</FormText>
       <Controller
@@ -80,7 +80,7 @@ export const LocationDateContainerFormFields = ({
           />
         )}
       />
-      {errors.trainningLocation && <ErrorText>This is required.</ErrorText>}
+      {errors.trainningLocation && <ErrorText>{errors.trainningLocation.message}</ErrorText>}
     </LocationDateContainer>
   );
 };

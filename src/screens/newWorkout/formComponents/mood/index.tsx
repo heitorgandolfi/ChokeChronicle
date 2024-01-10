@@ -1,4 +1,3 @@
-import { Text } from "react-native";
 import { Controller } from "react-hook-form";
 
 import { FormFieldsProps } from "../../../../models/newWorkoutFormFieldsModel";

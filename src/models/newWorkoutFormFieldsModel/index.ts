@@ -1,6 +1,7 @@
 import { Control, FieldErrors, UseFormSetValue } from "react-hook-form";
 
 export type NewWorkoutFormFieldsProps = {
+  Id?: number;
   trainningDate: string;
   trainningLocation: string;
   whiteBelt: string;
