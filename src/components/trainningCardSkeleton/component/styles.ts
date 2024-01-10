@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 
 export const TrainningCardContainerSkeleton = styled(Animated.View)`
   width: 380px;
-  height: 132px;
+  height: 158px;
 
   gap: 14px;
   margin: 20px 16px 5px;
