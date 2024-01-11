@@ -1,5 +1,11 @@
-import { Text } from "react-native";
+import { ScrollView } from "react-native";
+
+import { NewWorkoutForm } from "./newWorkoutForm";
 
 export const NewWorkoutScreen = () => {
-  return <Text>Add Workout</Text>;
+  return (
+    <ScrollView keyboardShouldPersistTaps="never">
+      <NewWorkoutForm />
+    </ScrollView>
+  );
 };

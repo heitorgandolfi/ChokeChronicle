@@ -34,7 +34,7 @@ export const AppRoutes = () => {
       />
 
       <Screen
-        name="AddWorkout"
+        name="NewWorkout"
         options={{
           headerTitle: "New Workout",
           tabBarIcon: ({ focused }) => <BottomTabs focused={focused} icons="plus" />,
