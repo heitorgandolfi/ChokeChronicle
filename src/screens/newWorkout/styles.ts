@@ -35,7 +35,7 @@ export const Input = styled.TextInput<InputProps>`
 `;
 
 export const ErrorText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
-  font-weight: bold;
+  font-family: ${(props) => props.theme.fonts.Bold};
 
   margin: -8px 0 8px;
 
@@ -70,10 +70,9 @@ export const SubmitButton = styled.TouchableOpacity`
   border-radius: 16px;
 
   background-color: ${(props) => props.theme.tertiary};
-  color: white;
 `;
 
 export const SubmitButtonText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
   color: ${(props) => props.theme["gray-450"]};
-  font-weight: 600;
+  font-family: ${(props) => props.theme.fonts.Bold};
 `;

@@ -21,7 +21,7 @@ export const BottomTabs = ({ icons, focused }: BottomTabsProps) => {
 
   return (
     <MaterialCommunityIcons
-      name={setIcon(icons as any) as any}
+      name={setIcon(icons as BottomTabsTypes) as BottomTabsTypes}
       size={30}
       color={focused ? theme.secondary : theme["primary-lighter"]}
     />
