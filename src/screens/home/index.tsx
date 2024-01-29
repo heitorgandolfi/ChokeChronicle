@@ -1,24 +1,25 @@
-import { useCallback } from "react";
 import { useUnit } from "effector-react";
+import { useCallback, useRef } from "react";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 
 import { GetAllTrainningsUseCase } from "../../useCases/getAllTrainningsUseCase";
 import GetTrainningsStore from "../../stores/getTrainningsStore/getTrainningsStore";
-import { ListOfTrainningCardSkeleton } from "../../components/trainningCardSkeleton";
 
-import { TrainningCardList } from "./components/trainningCardList";
-import { EmptyCardList } from "./components/emptytrainningCardList";
+import { HomeScreenContent } from "./homeScreenContent";
+import { BottomSheetFilter } from "./components/bottomSheetFilter";
+
+type BottomSheetHandle = {
+  openBottomSheetFilter: () => void;
+};
 
 export const HomeScreen = () => {
+  const bottomSheetRef = useRef<BottomSheetHandle>(null);
+
   const { trainnings, isLoading } = useUnit(GetTrainningsStore);
   const isFocused = useIsFocused();
 
-  const handleHomeScreenLoading = () => {
-    if (trainnings.length == 0) return <EmptyCardList />;
-
-    if (isLoading) return <ListOfTrainningCardSkeleton />;
-
-    return <TrainningCardList />;
+  const handleButtonPress = () => {
+    bottomSheetRef.current?.openBottomSheetFilter();
   };
 
   useFocusEffect(
@@ -27,5 +28,15 @@ export const HomeScreen = () => {
     }, [isFocused]),
   );
 
-  return handleHomeScreenLoading();
+  return (
+    <>
+      <HomeScreenContent
+        trainnings={trainnings}
+        isLoading={isLoading}
+        onFilterButtonPress={handleButtonPress}
+      />
+
+      <BottomSheetFilter ref={bottomSheetRef} />
+    </>
+  );
 };
