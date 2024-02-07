@@ -8,6 +8,7 @@ interface FilterMenuProps {
 export const FilterMenu = ({ trainningsCount, onButtonPress }: FilterMenuProps) => (
   <FilterMenuContainer>
     <FilterText>{trainningsCount} Trainnings</FilterText>
+
     <FilterButton onPress={onButtonPress} activeOpacity={0.9}>
       <FilterIcon name="tune" />
       <FilterText buttonText>Filters</FilterText>

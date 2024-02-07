@@ -1,15 +1,25 @@
-import { Text, TouchableOpacity } from "react-native";
-import { useTheme } from "styled-components/native";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef } from "react";
-import BottomSheet, { BottomSheetBackdrop, BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
-import { ApplyFilterButton, ApplyFilterButtonText } from "./styles";
+import { FilterHeader } from "./filterHeader";
+import { RadioButtonController } from "./radioButton";
+
+import {
+  ApplyFilterButton,
+  ApplyFilterButtonText,
+  BottomSheetContainer,
+  BottomSheetFilterTopicTitle,
+  BottomSheetScrollViewContainer,
+  RadioButtonFilterByDaysContainer,
+} from "./styles";
 
 export const BottomSheetFilter = forwardRef((_, ref) => {
-  const { "gray-150": bottomSheetBackground, "primary-lighter": indicatorBackground } = useTheme();
-
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const bottomSheetSnapPoints = useMemo(() => ["75%"], []);
+  const bottomSheetSnapPoints = useMemo(() => ["55%"], []);
+
+  const { control, handleSubmit, setValue, reset, watch } = useForm();
+  const anyFilterIsSelected = watch("days") === undefined;
 
   const renderBackdrop = useCallback(
     (props: any) => <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />,
@@ -22,25 +32,63 @@ export const BottomSheetFilter = forwardRef((_, ref) => {
     },
   }));
 
+  const handleCloseBottomSheet = () => {
+    reset();
+    bottomSheetRef.current?.close();
+  };
+
+  const handleFilterSubmit: SubmitHandler<FieldValues> = (formData) => {
+    console.log(formData);
+
+    reset();
+    bottomSheetRef.current?.close();
+  };
+
   return (
-    <BottomSheet
-      index={-1}
+    <BottomSheetContainer
       ref={bottomSheetRef}
       snapPoints={bottomSheetSnapPoints}
       backdropComponent={renderBackdrop}
-      backgroundStyle={{ backgroundColor: bottomSheetBackground }}
-      handleIndicatorStyle={{ backgroundColor: indicatorBackground }}
-      enablePanDownToClose
     >
-      <BottomSheetScrollView>
-        <Text>DAYS</Text>
-        <Text>Last 7 days</Text>
-        <Text>Last 15 days</Text>
-        <Text>Last 30 days</Text>
-      </BottomSheetScrollView>
-      <ApplyFilterButton onPress={() => bottomSheetRef.current?.close()} activeOpacity={0.9}>
-        <ApplyFilterButtonText>Apply</ApplyFilterButtonText>
+      <BottomSheetScrollViewContainer>
+        <FilterHeader handleCloseBottomSheet={handleCloseBottomSheet} />
+
+        <BottomSheetFilterTopicTitle>Recent Days</BottomSheetFilterTopicTitle>
+
+        <RadioButtonFilterByDaysContainer>
+          <RadioButtonController
+            control={control}
+            name="days"
+            value="7"
+            label="7 days"
+            setValue={setValue}
+          />
+
+          <RadioButtonController
+            control={control}
+            name="days"
+            value="15"
+            label="15 days"
+            setValue={setValue}
+          />
+
+          <RadioButtonController
+            control={control}
+            name="days"
+            value="30"
+            label="30 days"
+            setValue={setValue}
+          />
+        </RadioButtonFilterByDaysContainer>
+      </BottomSheetScrollViewContainer>
+
+      <ApplyFilterButton
+        disabled={anyFilterIsSelected}
+        onPress={handleSubmit(handleFilterSubmit)}
+        activeOpacity={0.9}
+      >
+        <ApplyFilterButtonText disabled={anyFilterIsSelected}>Apply</ApplyFilterButtonText>
       </ApplyFilterButton>
-    </BottomSheet>
+    </BottomSheetContainer>
   );
 });
