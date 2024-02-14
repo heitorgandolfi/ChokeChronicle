@@ -5,7 +5,7 @@ export const FilterMenuContainer = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-top: 12px;
+  margin: 16px 0 8px;
 `;
 
 interface FilterButtonProps {

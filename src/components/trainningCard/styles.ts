@@ -11,7 +11,7 @@ export const DeleteCardIconContainer = styled.View`
   right: 40px;
   top: 45%;
 `;
-export const TrainningCardContainer = styled(Animated.View)`
+export const TrainningCardContainer: any = styled(Animated.View)`
   gap: 14px;
   margin: 20px 16px 5px;
   padding: 16px;
