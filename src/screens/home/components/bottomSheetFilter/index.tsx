@@ -13,6 +13,7 @@ import {
   BottomSheetScrollViewContainer,
   RadioButtonFilterByDaysContainer,
 } from "./styles";
+import { TrainningRepository } from "../../../../data/Repositories";
 
 export const BottomSheetFilter = forwardRef((_, ref) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -37,8 +38,11 @@ export const BottomSheetFilter = forwardRef((_, ref) => {
     bottomSheetRef.current?.close();
   };
 
-  const handleFilterSubmit: SubmitHandler<FieldValues> = (formData) => {
-    console.log(formData);
+  const handleFilterSubmit: SubmitHandler<FieldValues> = async (formData) => {
+    const { days } = formData;
+
+    const filteredTrainningsByDays = await TrainningRepository.getTrainningsByLastNDays({ days });
+    console.log(filteredTrainningsByDays);
 
     reset();
     bottomSheetRef.current?.close();

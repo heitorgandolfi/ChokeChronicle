@@ -1,5 +1,6 @@
-import { NewWorkoutFormFieldsProps } from "../../models/newWorkoutFormFieldsModel";
 import { dataBaseConnection } from "../dbConnection";
+import { formatDateForSQL } from "../../shared/utils/SqlDateFormatter";
+import { NewWorkoutFormFieldsProps } from "../../models/newWorkoutFormFieldsModel";
 
 const db = dataBaseConnection();
 
@@ -64,6 +65,37 @@ const getAllTrainningsFromDatabase = (): Promise<NewWorkoutFormFieldsProps[]> =>
   });
 };
 
+const getTrainningsByLastNDays = ({ days }: any): Promise<NewWorkoutFormFieldsProps[]> => {
+  return new Promise((resolve, reject) => {
+    const numberOfDays = parseInt(days, 10);
+
+    if (isNaN(numberOfDays)) {
+      reject("Invalid number of days");
+      return;
+    }
+
+    db.transaction((tx) => {
+      const currentDate = new Date();
+      const startDate = new Date(currentDate.getTime() - (numberOfDays - 1) * 24 * 60 * 60 * 1000);
+
+      const formattedStartDate = formatDateForSQL(startDate);
+      const formattedCurrentDate = formatDateForSQL(currentDate);
+
+      tx.executeSql(
+        "SELECT *, substr(trainningDate, 7, 4) || '-' || substr(trainningDate, 4, 2) || '-' || substr(trainningDate, 1, 2) AS formattedTrainningDate FROM Trainning WHERE substr(trainningDate, 7, 4) || '/' || substr(trainningDate, 4, 2) || '/' || substr(trainningDate, 1, 2) BETWEEN ? AND ? ORDER BY trainningDate DESC",
+        [formattedStartDate, formattedCurrentDate],
+        (_, { rows }) => {
+          resolve(rows._array);
+        },
+        (_, error) => {
+          console.error("SQL Error:", error);
+          reject("Ops... Something went wrong! Try again later.");
+          return false;
+        },
+      );
+    });
+  });
+};
 
 const deleteTrainningFromDatabase = (id: number) => {
   return new Promise((resolve, reject) => {
@@ -104,6 +136,7 @@ const dropTrainningTable = () => {
 export const TrainningRepository = {
   addTrainningToDatabase,
   getAllTrainningsFromDatabase,
+  getTrainningsByLastNDays,
   deleteTrainningFromDatabase,
   dropTrainningTable,
 };
