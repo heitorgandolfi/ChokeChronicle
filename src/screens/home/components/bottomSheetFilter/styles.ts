@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
 export const BottomSheetContainer = styled(BottomSheet).attrs((props) => ({
@@ -43,13 +43,8 @@ export const ApplyFilterButton = styled.TouchableOpacity`
   padding: 14px;
 
   border-radius: 99px;
-  background-color: ${(props) => props.theme["primary-lighter"]};
-
-  ${(props) =>
-    props.disabled &&
-    css`
-      background-color: ${(props) => props.theme["gray-300"]};
-    `}
+  background-color: ${(props) =>
+    props.disabled ? props.theme["gray-400"] : props.theme["primary-lighter"]};
 `;
 
 export const ApplyFilterButtonText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
