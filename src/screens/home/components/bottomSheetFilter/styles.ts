@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { ActivityIndicator } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
 export const BottomSheetContainer = styled(BottomSheet).attrs((props) => ({
@@ -51,5 +52,10 @@ export const ApplyFilterButtonText = styled.Text.attrs(() => ({ maxFontSizeMulti
   font-size: 16px;
   font-family: ${(props) => props.theme.fonts.Bold};
 
-  color: ${(props) => (props.disabled ? props.theme["gray-400"] : props.theme["primaryA"])};
+  color: ${(props) => (props.disabled ? props.theme["gray-150"] : props.theme["primaryA"])};
 `;
+
+export const LoadingIndicator = styled(ActivityIndicator).attrs((props) => ({
+  size: "small",
+  color: props.theme["primary-dark"],
+}))``;

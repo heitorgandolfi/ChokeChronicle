@@ -2,11 +2,16 @@ import { FlatList } from "react-native";
 import { useUnit } from "effector-react";
 
 import { TrainningCard } from "../../../../components/trainningCard";
+import { filterTrainnings } from "../../../../shared/utils/filterTrainnings";
 import DeleteTrainningUseCase from "../../../../useCases/deleteTrainningUseCase";
 import GetTrainningsStore from "../../../../stores/getTrainningsStore/getTrainningsStore";
+import { GetFilteredTrainningsStore } from "../../../../stores/getTrainningsStore/filteredTrainnings/getTrainningsStore";
 
 export const TrainningCardList = () => {
+  const { filteredTrainnings } = useUnit(GetFilteredTrainningsStore);
   const { trainnings } = useUnit(GetTrainningsStore);
+
+  const trainningsToRender = filterTrainnings(trainnings, filteredTrainnings);
 
   const handleCardTrainningDelete = async (id: number) => {
     await DeleteTrainningUseCase.execute(id);
@@ -14,7 +19,7 @@ export const TrainningCardList = () => {
 
   return (
     <FlatList
-      data={trainnings}
+      data={trainningsToRender}
       keyExtractor={() => Math.random().toString()}
       renderItem={({ item }) => (
         <TrainningCard

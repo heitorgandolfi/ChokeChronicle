@@ -5,9 +5,17 @@ interface FilterMenuProps {
   onButtonPress: () => void;
 }
 
+const TrainningCountLabel = (trainningCount: number) => {
+  if (trainningCount === 1) return "Trainning";
+
+  return `Trainnings`;
+};
+
 export const FilterMenu = ({ trainningsCount, onButtonPress }: FilterMenuProps) => (
   <FilterMenuContainer>
-    <FilterText>{trainningsCount} Trainnings</FilterText>
+    <FilterText>
+      {trainningsCount} {TrainningCountLabel(trainningsCount)}
+    </FilterText>
 
     <FilterButton onPress={onButtonPress} activeOpacity={0.9}>
       <FilterIcon name="tune" />

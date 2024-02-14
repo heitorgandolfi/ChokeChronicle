@@ -1,6 +1,10 @@
+import { useUnit } from "effector-react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef } from "react";
+
+import { GetFilteredTrainningsUseCase } from "../../../../useCases/getFilteredTrainningsUseCase";
+import { GetFilteredTrainningsStore } from "../../../../stores/getTrainningsStore/filteredTrainnings/getTrainningsStore";
 
 import { FilterHeader } from "./filterHeader";
 import { RadioButtonController } from "./radioButton";
@@ -11,11 +15,13 @@ import {
   BottomSheetContainer,
   BottomSheetFilterTopicTitle,
   BottomSheetScrollViewContainer,
+  LoadingIndicator,
   RadioButtonFilterByDaysContainer,
 } from "./styles";
-import { TrainningRepository } from "../../../../data/Repositories";
 
 export const BottomSheetFilter = forwardRef((_, ref) => {
+  const { isLoading } = useUnit(GetFilteredTrainningsStore);
+
   const bottomSheetRef = useRef<BottomSheet>(null);
   const bottomSheetSnapPoints = useMemo(() => ["55%"], []);
 
@@ -41,8 +47,7 @@ export const BottomSheetFilter = forwardRef((_, ref) => {
   const handleFilterSubmit: SubmitHandler<FieldValues> = async (formData) => {
     const { days } = formData;
 
-    const filteredTrainningsByDays = await TrainningRepository.getTrainningsByLastNDays({ days });
-    console.log(filteredTrainningsByDays);
+    await GetFilteredTrainningsUseCase.execute({ days });
 
     reset();
     bottomSheetRef.current?.close();
@@ -91,7 +96,9 @@ export const BottomSheetFilter = forwardRef((_, ref) => {
         onPress={handleSubmit(handleFilterSubmit)}
         activeOpacity={0.9}
       >
-        <ApplyFilterButtonText disabled={anyFilterIsSelected}>Apply</ApplyFilterButtonText>
+        <ApplyFilterButtonText disabled={anyFilterIsSelected}>
+          {isLoading ? <LoadingIndicator /> : "Apply"}
+        </ApplyFilterButtonText>
       </ApplyFilterButton>
     </BottomSheetContainer>
   );

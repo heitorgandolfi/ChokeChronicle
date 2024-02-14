@@ -65,7 +65,7 @@ const getAllTrainningsFromDatabase = (): Promise<NewWorkoutFormFieldsProps[]> =>
   });
 };
 
-const getTrainningsByLastNDays = ({ days }: any): Promise<NewWorkoutFormFieldsProps[]> => {
+const getFilteredTrainnings = (days: any): Promise<NewWorkoutFormFieldsProps[]> => {
   return new Promise((resolve, reject) => {
     const numberOfDays = parseInt(days, 10);
 
@@ -136,7 +136,7 @@ const dropTrainningTable = () => {
 export const TrainningRepository = {
   addTrainningToDatabase,
   getAllTrainningsFromDatabase,
-  getTrainningsByLastNDays,
+  getFilteredTrainnings,
   deleteTrainningFromDatabase,
   dropTrainningTable,
 };
