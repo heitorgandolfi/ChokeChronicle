@@ -15,7 +15,7 @@ interface FilterButtonProps {
 export const FilterText = styled.Text.attrs(() => ({
   maxFontSizeMultiplier: 1,
 }))<FilterButtonProps>`
-  font-size: 16px;
+  font-size: 18px;
   font-family: ${(props) => props.theme.fonts.Medium};
 
   color: ${(props) => (props.buttonText ? props.theme["primary"] : props.theme["gray-350"])};
