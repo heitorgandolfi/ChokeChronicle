@@ -4,6 +4,7 @@ import {
   loadFilteredTrainnings,
   loadFilteredTrainningsDone,
   loadFilteredTrainningsFail,
+  loadResetFilteredTrainningsDone,
 } from "./getTrainningsEvents";
 
 const initialState: GetFilteredTrainningsState = {
@@ -26,6 +27,13 @@ export const GetFilteredTrainningsStore = createStore<GetFilteredTrainningsState
     hasError: false,
     errorMessage: "",
     filteredTrainnings: data,
+  }))
+  .on(loadResetFilteredTrainningsDone, (state) => ({
+    ...state,
+    isLoading: false,
+    hasError: false,
+    errorMessage: "",
+    filteredTrainnings: [],
   }))
   .on(loadFilteredTrainningsFail, (_, data) => ({
     hasError: true,
