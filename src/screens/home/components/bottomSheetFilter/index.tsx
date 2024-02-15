@@ -5,6 +5,7 @@ import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef } from "r
 
 import { GetFilteredTrainningsUseCase } from "../../../../useCases/getFilteredTrainningsUseCase";
 import { GetFilteredTrainningsStore } from "../../../../stores/getTrainningsStore/filteredTrainnings/getTrainningsStore";
+import { loadResetFilteredTrainningsDone } from "../../../../stores/getTrainningsStore/filteredTrainnings/getTrainningsEvents";
 
 import { FilterHeader } from "./filterHeader";
 import { RadioButtonController } from "./radioButton";
@@ -40,8 +41,14 @@ export const BottomSheetFilter = forwardRef((_, ref) => {
   }));
 
   const handleCloseBottomSheet = () => {
-    reset();
     bottomSheetRef.current?.close();
+  };
+
+  const handleClearAllFilters = () => {
+    loadResetFilteredTrainningsDone();
+    reset();
+
+    handleCloseBottomSheet();
   };
 
   const handleFilterSubmit: SubmitHandler<FieldValues> = async (formData) => {
@@ -49,8 +56,7 @@ export const BottomSheetFilter = forwardRef((_, ref) => {
 
     await GetFilteredTrainningsUseCase.execute({ days });
 
-    reset();
-    bottomSheetRef.current?.close();
+    handleCloseBottomSheet();
   };
 
   return (
@@ -60,7 +66,10 @@ export const BottomSheetFilter = forwardRef((_, ref) => {
       backdropComponent={renderBackdrop}
     >
       <BottomSheetScrollViewContainer>
-        <FilterHeader handleCloseBottomSheet={handleCloseBottomSheet} />
+        <FilterHeader
+          handleCloseBottomSheet={handleCloseBottomSheet}
+          handleClearAllFilters={handleClearAllFilters}
+        />
 
         <BottomSheetFilterTopicTitle>Recent Days</BottomSheetFilterTopicTitle>
 
