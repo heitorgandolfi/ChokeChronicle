@@ -1,3 +1,4 @@
+import Toast from "react-native-toast-message";
 import { ActivityIndicator, StatusBar } from "react-native";
 import { ThemeProvider } from "styled-components/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -12,6 +13,7 @@ import {
 
 import { Routes } from "./src/routes";
 import { defaultTheme } from "./src/styles/themes/default";
+import { toastConfig } from "./src/shared/utils/toastConfigs";
 
 export default function App() {
   const [LoadFonts] = useFonts({
@@ -38,6 +40,7 @@ export default function App() {
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <ThemeProvider theme={defaultTheme}>{handleFontsLoading()}</ThemeProvider>
+        <Toast config={toastConfig} />
       </GestureHandlerRootView>
 
       <StatusBar backgroundColor="transparent" translucent />
