@@ -15,7 +15,7 @@ export const Belt = styled.View`
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 4px;
+  padding: 0 0 0 2px;
 
   border-radius: 8px;
   border: 1px solid transparent;
