@@ -5,7 +5,8 @@ import { EmptyCardList } from "./components/emptytrainningCardList";
 import { FilterMenu } from "./components/bottomSheetFilter/filterMenu";
 
 import { NewWorkoutFormFieldsProps } from "../../models/newWorkoutFormFieldsModel";
-import { ListOfTrainningCardSkeleton } from "../../components/trainningCardSkeleton";
+
+import { LoadingIndicator, LoadingIndicatorContainer } from "./styles";
 
 interface HomeScreenContentProps {
   trainnings: NewWorkoutFormFieldsProps[];
@@ -18,14 +19,22 @@ export const HomeScreenContent = ({
   isLoading,
   onFilterButtonPress,
 }: HomeScreenContentProps) => {
-  if (trainnings.length === 0) return <EmptyCardList />;
+  const homeScreenContentRender = () => {
+    if (isLoading)
+      return (
+        <LoadingIndicatorContainer>
+          <LoadingIndicator />
+        </LoadingIndicatorContainer>
+      );
 
-  if (isLoading) return <ListOfTrainningCardSkeleton />;
+    if (trainnings.length === 0) return <EmptyCardList />;
+    return (
+      <>
+        <FilterMenu trainningsCount={trainnings.length} onButtonPress={onFilterButtonPress} />
+        <TrainningCardList />
+      </>
+    );
+  };
 
-  return (
-    <>
-      <FilterMenu trainningsCount={trainnings.length} onButtonPress={onFilterButtonPress} />
-      <TrainningCardList />
-    </>
-  );
+  return homeScreenContentRender();
 };
