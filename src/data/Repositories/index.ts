@@ -115,6 +115,42 @@ const deleteTrainningFromDatabase = (id: number) => {
   });
 };
 
+const getChartData = (dataType: string): Promise<{ [key: string]: number }> => {
+  return new Promise((resolve, reject) => {
+    let queryColumns = "";
+    let sumColumns = "";
+
+    if (dataType === "belts") {
+      queryColumns = "whiteBelt, blueBelt, purpleBelt, brownBelt, blackBelt";
+      sumColumns = "SUM(whiteBelt), SUM(blueBelt), SUM(purpleBelt), SUM(brownBelt), SUM(blackBelt)";
+    } else if (dataType === "statistics") {
+      queryColumns = "rolls, rests, subs, taps";
+      sumColumns = "SUM(rolls), SUM(rests), SUM(subs), SUM(taps)";
+    } else {
+      reject("Invalid data type");
+      return;
+    }
+
+    const query = `SELECT ${sumColumns} FROM Trainning`;
+
+    db.transaction((tx) => {
+      tx.executeSql(
+        query,
+        [],
+        (_, { rows }) => {
+          const result = rows.item(0);
+          resolve(result);
+        },
+        (_, error) => {
+          console.error("SQL Error:", error);
+          reject("Ops... Something went wrong! Try again later.");
+          return false;
+        },
+      );
+    });
+  });
+};
+
 const dropTrainningTable = () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -139,4 +175,5 @@ export const TrainningRepository = {
   getFilteredTrainnings,
   deleteTrainningFromDatabase,
   dropTrainningTable,
+  getChartData,
 };
