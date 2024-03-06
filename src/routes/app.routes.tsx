@@ -2,6 +2,7 @@ import { useTheme } from "styled-components";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { HomeScreen } from "../screens/home";
+import { ChartScreen } from "../screens/chart";
 import { NewWorkoutScreen } from "../screens/newWorkout";
 import { BottomTabs } from "../components/bottomTabs/icons";
 import { BottomTabStyle, HeaderStyle } from "../components/bottomTabs/styles/styles";
@@ -40,6 +41,15 @@ export const AppRoutes = () => {
           tabBarIcon: ({ focused }) => <BottomTabs focused={focused} icons="plus" />,
         }}
         component={NewWorkoutScreen}
+      />
+
+      <Screen
+        name="Chart"
+        options={{
+          headerTitle: "Performance Metrics",
+          tabBarIcon: ({ focused }) => <BottomTabs focused={focused} icons="chart-line" />,
+        }}
+        component={ChartScreen}
       />
     </Navigator>
   );
