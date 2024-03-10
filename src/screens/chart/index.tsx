@@ -1,7 +1,7 @@
 import { useUnit } from "effector-react";
+import { ScrollView } from "react-native";
 import { useCallback, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
-import { ScrollView, ActivityIndicator } from "react-native";
 import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 
 import { GetChartDataUseCase } from "../../useCases/getChartDataUseCase";
@@ -41,21 +41,19 @@ export const ChartScreen = () => {
   );
 
   const renderContent = () => {
-    if (isLoading) {
-      return <LoadingIndicator />;
-    } else if (totalData === 0) {
-      return renderEmptyData();
-    } else {
-      return (
-        <ChartComponent
-          chartData={chartData}
-          totalData={totalData}
-          selectedCategory={selectedCategory}
-          selectedCategoryInfo={selectedCategoryInfo}
-          handleCardOnPress={handleCardOnPress}
-        />
-      );
-    }
+    if (isLoading) return <LoadingIndicator />;
+
+    if (totalData === 0) return renderEmptyData();
+
+    return (
+      <ChartComponent
+        chartData={chartData}
+        totalData={totalData}
+        selectedCategory={selectedCategory}
+        selectedCategoryInfo={selectedCategoryInfo}
+        handleCardOnPress={handleCardOnPress}
+      />
+    );
   };
 
   useFocusEffect(
