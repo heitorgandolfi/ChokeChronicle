@@ -21,6 +21,12 @@ export const MetricsCard = styled.TouchableOpacity<MetricsCardProps>`
   background: ${({ theme }) => theme.white};
 `;
 
+export const MetricsCardContent = styled.View`
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+`;
+
 export const MetricsCardText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.Medium};

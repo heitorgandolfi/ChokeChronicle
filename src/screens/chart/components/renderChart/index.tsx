@@ -6,7 +6,7 @@ import { ChartDataProps } from "../../../../stores/getTrainningsStore/chartDataT
 
 import { SelectedChartCategory } from "../..";
 
-import { MetricsCard, MetricsCardPercentage, MetricsCardText } from "./styles";
+import { MetricsCard, MetricsCardContent, MetricsCardPercentage, MetricsCardText } from "./styles";
 
 interface ChartComponentProps {
   chartData: ChartDataProps[];
@@ -62,10 +62,10 @@ export const ChartComponent = ({
       >
         <MetricsCardText>{item.label}</MetricsCardText>
 
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+        <MetricsCardContent>
           <MetricsCardText>{item.y}</MetricsCardText>
           {renderPercentageCondition(item)}
-        </View>
+        </MetricsCardContent>
       </MetricsCard>
     );
   };
