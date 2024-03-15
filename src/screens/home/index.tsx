@@ -40,6 +40,7 @@ export const HomeScreen = () => {
         trainnings={trainningsToRender}
         isLoading={isLoading}
         onFilterButtonPress={handleButtonPress}
+        hasAnyFilter={filteredTrainnings.length > 0}
       />
 
       <BottomSheetFilter ref={bottomSheetRef} />

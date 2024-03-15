@@ -32,6 +32,18 @@ export const FilterButton = styled.TouchableOpacity`
   background-color: ${(props) => props.theme["secondary"]};
 `;
 
+export const FilterIndicator = styled.View`
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 90px;
+
+  background-color: ${({ theme }) => theme["secondary-dark"]};
+`;
+
 export const FilterIcon = styled(MaterialCommunityIcons)`
   font-size: 28px;
   color: ${(props) => props.theme["primary"]};

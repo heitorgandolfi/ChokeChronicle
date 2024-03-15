@@ -12,12 +12,14 @@ interface HomeScreenContentProps {
   trainnings: NewWorkoutFormFieldsProps[];
   isLoading: boolean;
   onFilterButtonPress: () => void;
+  hasAnyFilter: boolean;
 }
 
 export const HomeScreenContent = ({
   trainnings,
   isLoading,
   onFilterButtonPress,
+  hasAnyFilter,
 }: HomeScreenContentProps) => {
   const homeScreenContentRender = () => {
     if (isLoading)
@@ -30,7 +32,11 @@ export const HomeScreenContent = ({
     if (trainnings.length === 0) return <EmptyCardList />;
     return (
       <>
-        <FilterMenu trainningsCount={trainnings.length} onButtonPress={onFilterButtonPress} />
+        <FilterMenu
+          trainningsCount={trainnings.length}
+          onButtonPress={onFilterButtonPress}
+          hasAnyFilter={hasAnyFilter}
+        />
         <TrainningCardList />
       </>
     );
