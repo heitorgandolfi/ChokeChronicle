@@ -23,10 +23,12 @@ export const FilterText = styled.Text.attrs(() => ({
 
 export const FilterButton = styled.TouchableOpacity`
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   gap: 8px;
 
-  padding: 8px 24px;
+  width: 150px;
+  height: 44px;
 
   border-radius: 6px;
   background-color: ${(props) => props.theme["secondary"]};
