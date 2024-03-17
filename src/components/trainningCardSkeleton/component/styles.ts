@@ -12,7 +12,7 @@ export const TrainningCardContainerSkeleton = styled(Animated.View)`
   border: 1px solid transparent;
   border-radius: 16px;
 
-  elevation: 12;
+  elevation: 4;
   background-color: ${(props) => props.theme.primaryB};
 `;
 

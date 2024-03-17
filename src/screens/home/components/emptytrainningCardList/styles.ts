@@ -6,14 +6,19 @@ export const EmptyCardListContainer = styled.View`
   align-items: center;
 
   margin: 0 8px;
-  `;
+`;
 
-export const EmptyCardListText = styled.Text.attrs(() => ({ maxFontSizeMultiplier: 1 }))`
+interface EmptyCardListIconProps {
+  buttonText?: boolean;
+}
+export const EmptyCardListText = styled.Text.attrs(() => ({
+  maxFontSizeMultiplier: 1,
+}))<EmptyCardListIconProps>`
   font-size: 18px;
   font-family: ${(props) => props.theme.fonts.Bold};
   text-align: center;
 
-  color: ${(props) => props.theme["primary-lighter"]};
+  color: ${(props) => (props.buttonText ? props.theme["gray-450"] : props.theme["primary-light"])};
 `;
 
 export const EmptyCardListButton = styled.TouchableOpacity`
