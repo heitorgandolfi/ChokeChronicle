@@ -1,8 +1,15 @@
-import { FilterButton, FilterIcon, FilterMenuContainer, FilterText } from "./styles";
+import {
+  FilterIcon,
+  FilterText,
+  FilterButton,
+  FilterIndicator,
+  FilterMenuContainer,
+} from "./styles";
 
 interface FilterMenuProps {
   trainningsCount: number;
   onButtonPress: () => void;
+  hasAnyFilter: boolean;
 }
 
 const TrainningCountLabel = (trainningCount: number) => {
@@ -11,7 +18,7 @@ const TrainningCountLabel = (trainningCount: number) => {
   return `Trainnings`;
 };
 
-export const FilterMenu = ({ trainningsCount, onButtonPress }: FilterMenuProps) => (
+export const FilterMenu = ({ trainningsCount, onButtonPress, hasAnyFilter }: FilterMenuProps) => (
   <FilterMenuContainer>
     <FilterText>
       {trainningsCount} {TrainningCountLabel(trainningsCount)}
@@ -20,6 +27,11 @@ export const FilterMenu = ({ trainningsCount, onButtonPress }: FilterMenuProps) 
     <FilterButton onPress={onButtonPress} activeOpacity={0.9}>
       <FilterIcon name="tune" />
       <FilterText buttonText>Filters</FilterText>
+      {hasAnyFilter && (
+        <FilterIndicator>
+          <FilterIcon name="exclamation" />
+        </FilterIndicator>
+      )}
     </FilterButton>
   </FilterMenuContainer>
 );

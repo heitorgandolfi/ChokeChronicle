@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "styled-components";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-type BottomTabsTypes = "home" | "plus";
+type BottomTabsTypes = "home" | "plus" | "chart-line";
 
 type BottomTabsProps = {
   icons?: BottomTabsTypes;
@@ -13,6 +13,7 @@ const setIcon = (iconName: string) => {
   return {
     home: "home-outline",
     plus: "plus",
+    "chart-line": "chart-line",
   }[iconName];
 };
 

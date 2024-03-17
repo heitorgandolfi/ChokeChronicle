@@ -15,7 +15,7 @@ export const EmptyCardList = () => {
       <EmptyCardListText>Add your first workouts to start tracking your progress</EmptyCardListText>
 
       <EmptyCardListButton onPress={handleGoToTrainningScreen} activeOpacity={0.9}>
-        <EmptyCardListText>Start</EmptyCardListText>
+        <EmptyCardListText buttonText>Start</EmptyCardListText>
       </EmptyCardListButton>
     </EmptyCardListContainer>
   );

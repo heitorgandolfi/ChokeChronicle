@@ -1,10 +1,6 @@
 import { TrainningRepository } from "../../data/Repositories";
 import { NewWorkoutFormFieldsProps } from "../../models/newWorkoutFormFieldsModel";
-import {
-  loadTrainning,
-  loadTrainningDone,
-  loadTrainningFail,
-} from "../../stores/trainningStore/trainningEvents";
+import { loadTrainning, loadTrainningFail } from "../../stores/trainningStore/trainningEvents";
 
 const execute = async ({
   trainningDate,
@@ -22,26 +18,28 @@ const execute = async ({
 }: NewWorkoutFormFieldsProps): Promise<void> => {
   loadTrainning();
 
-  return TrainningRepository.addTrainningToDatabase({
+  const removeDecimal = (value: string) => value.replace(/\..*/, "");
+
+  const convertedData = {
     trainningDate,
     trainningLocation,
-    whiteBelt,
-    blueBelt,
-    purpleBelt,
-    brownBelt,
-    blackBelt,
-    rolls,
-    rests,
-    subs,
-    taps,
+    whiteBelt: removeDecimal(whiteBelt),
+    blueBelt: removeDecimal(blueBelt),
+    purpleBelt: removeDecimal(purpleBelt),
+    brownBelt: removeDecimal(brownBelt),
+    blackBelt: removeDecimal(blackBelt),
+    rolls: removeDecimal(rolls),
+    rests: removeDecimal(rests),
+    subs: removeDecimal(subs),
+    taps: removeDecimal(taps),
     mood,
-  })
-    .then(() => {
-      // loadTrainningDone("fail");
-    })
-    .catch(({ message }) => {
-      loadTrainningFail(message);
-    });
+  };
+
+  try {
+    await TrainningRepository.addTrainningToDatabase(convertedData);
+  } catch ({ error }: any) {
+    loadTrainningFail(error.message);
+  }
 };
 
 const AddTrainningUseCase = {
