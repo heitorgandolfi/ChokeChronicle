@@ -8,5 +8,6 @@ export const colorSchemes: { [key in any]: string[] } = {
     theme["brown-600"],
     theme.black,
   ],
-  statistics: [theme.tertiary, theme["blue-450"], theme["secondary-dark"], theme["yellow-500"]],
+  subs_taps: [theme.tertiary, theme["secondary-dark"]],
+  rolls_rests: [theme["blue-450"], theme["yellow-500"]],
 };
