@@ -28,10 +28,10 @@ const execute = async ({
     purpleBelt: removeDecimal(purpleBelt),
     brownBelt: removeDecimal(brownBelt),
     blackBelt: removeDecimal(blackBelt),
-    rolls: removeDecimal(rolls),
-    rests: removeDecimal(rests),
-    subs: removeDecimal(subs),
-    taps: removeDecimal(taps),
+    rolls: removeDecimal(rolls) || "0",
+    rests: removeDecimal(rests) || "0",
+    subs: removeDecimal(subs) || "0",
+    taps: removeDecimal(taps) || "0",
     mood,
   };
 

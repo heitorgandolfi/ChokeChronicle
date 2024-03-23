@@ -19,7 +19,7 @@ import {
   LoadingIndicator,
 } from "./styles";
 
-export type SelectedChartCategory = "belts" | "statistics";
+export type SelectedChartCategory = "belts" | "subs_taps" | "rolls_rests";
 
 export const ChartScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState<SelectedChartCategory>("belts");
@@ -76,8 +76,9 @@ export const ChartScreen = () => {
           onValueChange={(itemValue: SelectedChartCategory) => setSelectedCategory(itemValue)}
           style={PickerStyles}
         >
-          <Picker.Item label="Belt Totals" value="belts" />
-          <Picker.Item label="Activity Metrics" value="statistics" />
+          <Picker.Item label="Total Belts" value="belts" />
+          <Picker.Item label="Subs and Taps" value="subs_taps" />
+          <Picker.Item label="Rolls and Rests" value="rolls_rests" />
         </Picker>
       </Container>
 
