@@ -5,12 +5,22 @@ A mobile application designed for jiu-jitsu enthusiasts, ChokeChronicle is your 
 
 ## Project Status
 
-This project is currently in development, `Version 2` will be released at some point. For now, users can enter records of their training sessions, viewing them on the home screen and being able to delete them if they wish.
+This project is currently under development. For now, users can:
+
+- create records of their workouts, viewing them on the home screen and being able to delete them if they wish.
+
+- filtrate their workouts by days (7, 15 and 30).
+
+- visualize some general metrics in graph form, such as the number of times you submitted someone, the number of people with a certain belt color who you have fought and more.
 
 ## Project Screen Shot(s)
 
-<img src="https://github.com/heitorgandolfi/levva-coins/assets/113437603/acf05a7a-56b0-41fb-9352-010973e244be.png" width="260px">
-<img src="https://github.com/heitorgandolfi/levva-coins/assets/113437603/dafd2658-a161-4b4c-8862-59ac70239ba9.png" width="264px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/a0e96a0f-c90a-4a24-b28c-c1fa7d94dced.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/dbbcf7e9-4741-4326-bbac-55a0574968c2.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/5f7be929-897c-4e8a-a89d-7cbfac8679f9" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/9b4f7bf9-2be2-4f02-b7b1-d4a4336321d4" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/f7673f4b-be4e-476f-ba62-35e5f4606397" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/070e1a07-635f-4602-a961-303b7f544d77.png" width="260px">
 
 ## Installation and Setup Instructions
 
@@ -30,9 +40,7 @@ You need to have an emulator running. (Android Studio, for example)
 
 As a passionate jiu-jitsu practitioner, as training sessions passed, I found myself forgetting about my performance, making it challenging to gauge my progress on the mats. Therefore, I decided to create this project with the initial goal of allowing the recording of my activities to periodically compare them.
 
-For this first version of the application, only the initial features (activity logging with the option to delete them) are currently available. However, for the future, the plan is to implement a series of improvements such as integration with Firebase, creating graphs for better data visualization and analysis, setting personal goals, tournament records, and much more.
-
-As mentioned, this is a personal project that, beyond the realm of jiu-jitsu, will also serve as a laboratory to explore and learn technological solutions as it is developed.
+This is a personal project that, beyond the realm of jiu-jitsu, will also serve as a laboratory to explore and learn technological solutions as it is developed.
 
 Regarding the project itself, I chose to use the Expo platform for several reasons:
 
