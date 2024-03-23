@@ -15,12 +15,12 @@ This project is currently under development. For now, users can:
 
 ## Project Screen Shot(s)
 
-<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/9965d655-716f-45f0-940a-96a466baa939.png" width="260px">
-<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/dbbcf7e9-4741-4326-bbac-55a0574968c2.png" width="260px">
-<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/5f7be929-897c-4e8a-a89d-7cbfac8679f9" width="260px">
-<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/9b4f7bf9-2be2-4f02-b7b1-d4a4336321d4" width="260px">
-<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/f7673f4b-be4e-476f-ba62-35e5f4606397" width="260px">
-<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/070e1a07-635f-4602-a961-303b7f544d77.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/5cb0f57a-a230-4495-b52d-2e4bbb61970a.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/9f998460-3179-453b-9f6d-8b20690fed6b.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/eff74b04-8338-4c79-abec-dadb51edd3a6.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/17efbe96-70c3-43b5-ac5a-5b4cfbb78026.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/00ff8497-f71c-4e84-bac3-05f4abef045e.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/d7bfb353-37b4-4933-a6c7-c3a7c44ef5f3.png" width="260px">
 
 ## Installation and Setup Instructions
 
