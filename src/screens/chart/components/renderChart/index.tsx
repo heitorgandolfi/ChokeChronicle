@@ -1,4 +1,3 @@
-import { View } from "react-native";
 import { VictoryPie } from "victory-native";
 
 import { colorSchemes } from "../../../../shared/utils/chartColorScheme";
@@ -41,17 +40,6 @@ export const ChartComponent = ({
     );
   };
 
-  const renderPercentageCondition = (item: ChartDataProps) => {
-    if (selectedCategory === "belts") {
-      return (
-        <MetricsCardPercentage>
-          {`(${((item.y / totalData) * 100).toFixed(1)}%)`}
-        </MetricsCardPercentage>
-      );
-    }
-    return null;
-  };
-
   const renderMetricsCard = (item: ChartDataProps, index: number) => {
     return (
       <MetricsCard
@@ -64,7 +52,9 @@ export const ChartComponent = ({
 
         <MetricsCardContent>
           <MetricsCardText>{item.y}</MetricsCardText>
-          {renderPercentageCondition(item)}
+          <MetricsCardPercentage>
+            {`(${((item.y / totalData) * 100).toFixed(1)}%)`}
+          </MetricsCardPercentage>
         </MetricsCardContent>
       </MetricsCard>
     );

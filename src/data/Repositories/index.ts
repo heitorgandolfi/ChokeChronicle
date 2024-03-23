@@ -115,22 +115,22 @@ const deleteTrainningFromDatabase = (id: number) => {
   });
 };
 
+const columnMappings = {
+  belts: ["whiteBelt", "blueBelt", "purpleBelt", "brownBelt", "blackBelt"],
+  subs_taps: ["subs", "taps"],
+  rolls_rests: ["rolls", "rests"],
+};
+
 const getChartData = (dataType: string): Promise<{ [key: string]: number }> => {
   return new Promise((resolve, reject) => {
-    let queryColumns = "";
-    let sumColumns = "";
+    const columnsToSum = columnMappings[dataType as keyof typeof columnMappings];
 
-    if (dataType === "belts") {
-      queryColumns = "whiteBelt, blueBelt, purpleBelt, brownBelt, blackBelt";
-      sumColumns = "SUM(whiteBelt), SUM(blueBelt), SUM(purpleBelt), SUM(brownBelt), SUM(blackBelt)";
-    } else if (dataType === "statistics") {
-      queryColumns = "rolls, rests, subs, taps";
-      sumColumns = "SUM(rolls), SUM(rests), SUM(subs), SUM(taps)";
-    } else {
+    if (!columnsToSum) {
       reject("Invalid data type");
       return;
     }
 
+    const sumColumns = columnsToSum.map((column) => `SUM(${column})`).join(", ");
     const query = `SELECT ${sumColumns} FROM Trainning`;
 
     db.transaction((tx) => {
@@ -143,7 +143,7 @@ const getChartData = (dataType: string): Promise<{ [key: string]: number }> => {
         },
         (_, error) => {
           console.error("SQL Error:", error);
-          reject("Ops... Something went wrong! Try again later.");
+          reject("Something went wrong! Try again later.");
           return false;
         },
       );
