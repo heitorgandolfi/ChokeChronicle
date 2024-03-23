@@ -15,7 +15,7 @@ This project is currently under development. For now, users can:
 
 ## Project Screen Shot(s)
 
-<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/a0e96a0f-c90a-4a24-b28c-c1fa7d94dced.png" width="260px">
+<img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/9965d655-716f-45f0-940a-96a466baa939.png" width="260px">
 <img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/dbbcf7e9-4741-4326-bbac-55a0574968c2.png" width="260px">
 <img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/5f7be929-897c-4e8a-a89d-7cbfac8679f9" width="260px">
 <img src="https://github.com/heitorgandolfi/ChokeChronicle/assets/113437603/9b4f7bf9-2be2-4f02-b7b1-d4a4336321d4" width="260px">
